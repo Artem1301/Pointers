@@ -69,7 +69,23 @@ void searchAmountOfZero(node** head, node** tail, int i, int j){
 	cout << "Amount of zero between i(" << i << ") and j(" << j << "): "  << amount; 
 }
 
+void deleteList(node **head, node **tail)
+{
+    node *current = *head;
+    node *next;
 
+    while (current)
+    {
+        next = current->prev;
+        delete current;
+        current = next;
+
+        if (current == *head)
+            break;
+    }
+
+    *head = *tail = NULL;
+}
 
 int main(){
 	int i; 
@@ -91,6 +107,6 @@ int main(){
 	cout << "All zero: " << endl;
 
 	searchAmountOfZero(&head, &tail, 1, 8);
-
+	deleteList(&head, &tail);
 	return 0;
 }
